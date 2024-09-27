@@ -1,45 +1,28 @@
-Managing Go Installations
-=========================
+# Managing Go Installations
 
-Overview
---------
+## Overview
 
-This guide explains how to install multiple versions of Go on the same machine and how to uninstall Go.
+This guide provides commands to install multiple versions of Go and uninstall Go on macOS/Linux and Windows.
 
-Installing Multiple Go Versions
--------------------------------
+## Table of Commands
 
-* You can install multiple Go versions to test your code across different versions.
-* Ensure you have Git installed.
-* Use the following command to install a specific version (e.g., 1.10.7):
+| **Task**                              | **macOS/Linux Terminal Commands**                                                | **Windows Command Prompt Commands**                             |
+|---------------------------------------|----------------------------------------------------------------------------------|----------------------------------------------------------------|
+| **Install Specific Go Version**      | ```go install golang.org/dl/go1.10.7@latest```                      | ```go install golang.org/dl/go1.10.7@latest```      |
+| **Download Installed Version**        | ```go1.10.7 download```                                             | ```go1.10.7 download```                             |
+| **Run Command with New Version**     | ```go1.10.7 version```                                             | ```go1.10.7 version```                              |
+| **Check Installation Path**           | ```go1.10.7 env GOROOT```                                          | ```go1.10.7 env GOROOT```                           |
+| **Remove Go Directory**               | ```sudo rm -rf /usr/local/go```                                    | N/A                                                            |
+| **Edit Profile to Remove Go from PATH** | ```nano ~/.profile``` <br> Remove lines with `/usr/local/go/bin` <br> Save and exit | N/A |
+| **Reload Profile**                    | ```source ~/.profile```                                            | N/A                                                            |
+| **Uninstall via Control Panel**       | N/A                                                                              | Open Control Panel > Programs > Uninstall a program <br> Select "Go Programming Language" and click Uninstall |
+| **Uninstall using Command Line**      | N/A                                                                              | ```msiexec /x go{{version}}.windows-{{cpu-arch}}.msi /q``` |
 
-$ go install golang.org/dl/go1.10.7@latest
-$ go1.10.7 download
+## Notes
 
-* To run commands with the newly installed version, append the version number:
+- Replace `{{version}}` and `{{cpu-arch}}` in the Windows command with the appropriate version and architecture for your Go installation.
+- For macOS/Linux commands, ensure you have appropriate permissions for actions that require `sudo`.
 
-$ go1.10.7 version
+## Conclusion
 
-* To find the installation location of each version, use:
-
-$ go1.10.7 env GOROOT
-
-* To uninstall a version, remove the directory specified by its GOROOT and the corresponding binary.
-
-Uninstalling Go
----------------
-
-### Linux / macOS / FreeBSD
-
-1. Delete the Go directory, typically located at `/usr/local/go`.
-2. Remove the Go bin directory from your PATH by editing `/etc/profile` or `$HOME/.profile`. For macOS, also remove the `/etc/paths.d/go` file.
-
-### Windows
-
-1. Uninstall via Control Panel:
-    * Go to Add/Remove Programs, select "Go Programming Language," and click Uninstall.
-2. Alternatively, use the command line:
-
-msiexec /x go{{version}}.windows-{{cpu-arch}}.msi /q
-
-4. This method will automatically remove any environment variables created during installation.
+By following the commands in this guide, you can effectively manage your Go installations across different operating systems. If you encounter any issues, please refer to the official Go documentation or community for assistance.
